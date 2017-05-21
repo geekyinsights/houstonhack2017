@@ -1,13 +1,13 @@
 <!DOCTYPE html>
-<html dir="rtl">
+<html>
   <head>
-    <title>Right-to-Left Languages</title>
     <meta charset="utf-8">
+    <title>Search for up to 200 places with Radar Search</title>
     <style>
       /* Always set the map height explicitly to define the size of the div
        * element that contains the map. */
       #map {
-        height: 50%;
+        height: 100%;
       }
       /* Optional: Makes the sample page fill the window. */
       html, body {
@@ -16,77 +16,87 @@
         padding: 0;
       }
     </style>
-  </head>
-  <body>
-    <div id="map"></div>
     <script>
-      // This example displays a map with the language set to Arabic and the
-      // regions set to Egypt. These settings are specified in the HTML script
-      // element when loading the Google Maps JavaScript API.
-      // Setting the language shows the map in the language of your choice.
-      // Setting the region biases the geocoding results to that region.
-      // In addition, the page's html element sets the text direction to
-      // right-to-left.
+      // This example requires the Places library. Include the libraries=places
+      // parameter when you first load the API. For example:
+      // <script src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&libraries=places">
+
       var map;
+      var infoWindow;
       var service;
-      var infowindow;
 
       function initMap() {
         map = new google.maps.Map(document.getElementById('map'), {
           center: {lat: 29.7604000, lng: -95.3698000},
-          //scaleControl: true,
-          zoom: 15
+          zoom: 15,
+          styles: [{
+            stylers: [{ visibility: 'simplified' }]
+          }, {
+            elementType: 'labels',
+            stylers: [{ visibility: 'off' }]
+          }]
         });
 
         infoWindow = new google.maps.InfoWindow();
         service = new google.maps.places.PlacesService(map);
 
+        // The idle event is a debounced event, so we can query & listen without
+        // throwing too many requests at the server.
         map.addListener('idle', performSearch);
-
-    }
-     function performSearch(){
-        var request = {
-                bounds: map.getBounds(),
-                keyword: 'apartments'
-        };
-        service.radarSearch(request, callback);
-    }
-
-        function callback(results, status){
-            if(status !== google.maps.places.PlacesServicesStatus.OK){
-                console.error(status);
-                return;
-            }
-            for (var i = 0, result; result = results[i]; i++){
-                addMarker(result);
-                }
-            }
-        function addMarker(place) {
-              var marker = new google.maps.Marker({
-                map: map,
-                position: place.geometry.location,
-                icon: {
-                  url: 'https://developers.google.com/maps/documentation/javascript/images/circle.png',
-                  anchor: new google.maps.Point(10, 10),
-                  scaledSize: new google.maps.Size(10, 17)
-                }
-        });
-
-       google.maps.event.addListener(marker, 'click', function() {
-            service.getDetails(place, function(result, status) {
-                 if (status !== google.maps.places.PlacesServiceStatus.OK) {
-                  console.error(status);
-                  return;
-                  }
-                  infoWindow.setContent(result.name);
-                  infoWindow.open(map, marker);
-                });
-      });
 
 
       }
+
+      function performSearch() {
+        var request = {
+          bounds: map.getBounds(),
+          keyword: 'apartments'
+        };
+        service.radarSearch(request, callback);
+      }
+
+      function callback(results, status) {
+        if (status !== google.maps.places.PlacesServiceStatus.OK) {
+          console.error(status);
+          return;
+        }
+        for (var i = 0, result; result = results[i]; i++) {
+          addMarker(result);
+        }
+      }
+
+      function addMarker(place) {
+        var marker = new google.maps.Marker({
+          map: map,
+          position: place.geometry.location,
+          icon: {
+            url: 'https://developers.google.com/maps/documentation/javascript/images/circle.png',
+            anchor: new google.maps.Point(10, 10),
+            scaledSize: new google.maps.Size(10, 17)
+          }
+        });
+        google.maps.event.addListener(marker, 'click', function() {
+            service.getDetails(place, function(result, status) {
+            if (status !== google.maps.places.PlacesServiceStatus.OK) {
+                console.error(status);
+                return;
+            }
+            infoWindow.setContent(result.name);
+            infoWindow.open(map, marker);
+        });
+    });
+
+      }
     </script>
-    <script async defer
-    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAJyQeeXCkmznGeIY8exehocWQzUl5yx0M&language=ar&region=EG&callback=initMap"></script>
+  </head>
+  <body>
+    <div id="map"></div>
+    <div id = "display">
+        <ul>
+            <li></li>
+        </ul>
+
+    </div>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAJyQeeXCkmznGeIY8exehocWQzUl5yx0M&callback=initMap&libraries=places,visualization" async defer></script>
   </body>
 </html>
