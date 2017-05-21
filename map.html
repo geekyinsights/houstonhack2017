@@ -7,7 +7,7 @@
       /* Always set the map height explicitly to define the size of the div
        * element that contains the map. */
       #map {
-        height: 100%;
+        height: 50%;
       }
       /* Optional: Makes the sample page fill the window. */
       html, body {
@@ -24,6 +24,7 @@
       var map;
       var infoWindow;
       var service;
+      var address;
 
       function initMap() {
         map = new google.maps.Map(document.getElementById('map'), {
@@ -43,7 +44,6 @@
         // The idle event is a debounced event, so we can query & listen without
         // throwing too many requests at the server.
         map.addListener('idle', performSearch);
-
 
       }
 
@@ -83,17 +83,25 @@
              return;
            }
            var name = result.name;
-           var address = result.formatted_address;
+           address = result.formatted_address;
+           console.log(address);
            var placeID = result.place_id;
            var html = "<b>"+ name + "</b> <br/>" + address;
+
            infoWindow.setContent(html);
            infoWindow.open(map, marker,html);
          });
        });
-
       }
 
+     function zillowCALL(){
+         //var street_address = result.formatted_address;
 
+         var street_address = address.split(',')[0];
+         street_address = street_address.replace(/ /g, "+");
+          location.href = 'http://www.zillow.com/webservice/GetSearchResults.htm?zws-id=X1-ZWz196xhdb4v0r_2ox88&address=' + street_address + '&citystatezip=Houston%2C+TX';
+
+     }
 
     </script>
 
@@ -102,7 +110,10 @@
     <div id="map"></div>
     <div id = "display">
         <ul>
-            <li></li>
+            <li>
+
+              <button onclick="zillowCALL();">Test Listing</button>
+            </li>
         </ul>
 
     </div>
