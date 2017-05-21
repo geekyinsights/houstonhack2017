@@ -2,10 +2,11 @@
 <html lang="en">
 <head>
 <script src="https://code.jquery.com/jquery-3.1.0.min.js"></script>
+    <link rel="stylesheet" href="main.css"/>
 <link href="https://fonts.googleapis.com/css?family=Rubik" rel="stylesheet">
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css"/>
 <link rel="stylesheet" href="bootstrap.min.css"/>
-<link rel="stylesheet" href="main.css"/>
+
 </head>
     <body>
          <div class ="container">
@@ -25,17 +26,17 @@
         </div>
         
         <div class="row">
-        <div class= ".jumbotron">
+        <div class= ".search-form">
           <h1>Book you New Home</h1>
             <h4>Best housing options in Houston</h4>
-            <div class="col-md-4">
+            <div class="col-md-4 pull-left">
             <form id="search-form">
                 <div class="input-wrapper">
                     <input id="location" style="width: 350px" class="location" method="post" placeholder="Where would want to move to?">
                  
                 </div>
                 </form>
-                </div>
+            </div>
              <div class="col-md-4">
                 <div class="btn-group">
                       <button class="btn btn-secondary btn-lg dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -48,26 +49,94 @@
                     
                     </div>
                  </div>
+            </div>
+            <div class="col-md-4">
+                <div class="btn-group">
+                      <button class="btn btn-secondary btn-lg dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Do you have Pets
+                      </button>
+                    <div class="dropdown-menu dropdown-menu-center">
+                        <button class="dropdown-item" type="button">1 Tenant</button>
+                        <button class="dropdown-item" type="button">2 Tenant</button>
+                        <button class="dropdown-item" type="button">3 Tenant</button>
+                    
+                    </div>
+                 </div>
         </div>
-       
+            </div>
+        </div>
         <div class="row">
-        <div class= "container">
-            <div class="card w-75" style="width: 20rem;">
-              <img class="card-img" src="https://placehold.it/150x150" alt="Card image cap">
-              <div class="card-block">
-                <div class="card-img-overlay">
-
+        <div class="card-columns">
+              <div class="card">
+                <img class="card-img-top img-fluid" src="..." alt="Card image cap">
+                <div class="card-block">
+                  <h4 class="card-title">Card title that wraps to a new line</h4>
+                  <p class="card-text">This is a longer card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+                </div>
+              </div>
+              <div class="card p-3">
+                <blockquote class="card-block card-blockquote">
+                  <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer posuere erat a ante.</p>
+                  <footer>
+                    <small class="text-muted">
+                      Someone famous in <cite title="Source Title">Source Title</cite>
+                    </small>
+                  </footer>
+                </blockquote>
+              </div>
+              <div class="card">
+                <img class="card-img-top img-fluid" src="..." alt="Card image cap">
+                <div class="card-block">
+                  <h4 class="card-title">Card title</h4>
+                  <p class="card-text">This card has supporting text below as a natural lead-in to additional content.</p>
+                  <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+                </div>
+              </div>
+              <div class="card card-inverse card-primary p-3 text-center">
+                <blockquote class="card-blockquote">
+                  <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer posuere erat.</p>
+                  <footer>
+                    <small>
+                      Someone famous in <cite title="Source Title">Source Title</cite>
+                    </small>
+                  </footer>
+                </blockquote>
+              </div>
+              <div class="card text-center">
+                <div class="card-block">
+                  <h4 class="card-title">Card title</h4>
+                  <p class="card-text">This card has supporting text below as a natural lead-in to additional content.</p>
+                  <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+                </div>
+              </div>
+              <div class="card">
+                <img class="card-img img-fluid" src="..." alt="Card image">
+              </div>
+              <div class="card p-3 text-right">
+                <blockquote class="card-blockquote">
+                  <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer posuere erat a ante.</p>
+                  <footer>
+                    <small class="text-muted">
+                      Someone famous in <cite title="Source Title">Source Title</cite>
+                    </small>
+                  </footer>
+                </blockquote>
+              </div>
+              <div class="card">
+                <div class="card-block">
+                  <h4 class="card-title">Card title</h4>
+                  <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This card has even longer content than the first to show that equal height action.</p>
+                  <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
                 </div>
               </div>
             </div>
-        </div>
        </div>
 
 
        
 </body>
     
-     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+     <script src="bootstrap.min.js"></script>
         
         <script type="text/javascript" src="form_app.js"></script>
 </html>
