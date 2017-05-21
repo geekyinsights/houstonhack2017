@@ -75,19 +75,28 @@
             scaledSize: new google.maps.Size(10, 17)
           }
         });
+
         google.maps.event.addListener(marker, 'click', function() {
-            service.getDetails(place, function(result, status) {
-            if (status !== google.maps.places.PlacesServiceStatus.OK) {
-                console.error(status);
-                return;
-            }
-            infoWindow.setContent(result.name);
-            infoWindow.open(map, marker);
-        });
-    });
+         service.getDetails(place, function(result, status) {
+           if (status !== google.maps.places.PlacesServiceStatus.OK) {
+             console.error(status);
+             return;
+           }
+           var name = result.name;
+           var address = result.formatted_address;
+           var placeID = result.place_id;
+           var html = "<b>"+ name + "</b> <br/>" + address;
+           infoWindow.setContent(html);
+           infoWindow.open(map, marker,html);
+         });
+       });
 
       }
+
+
+
     </script>
+
   </head>
   <body>
     <div id="map"></div>
